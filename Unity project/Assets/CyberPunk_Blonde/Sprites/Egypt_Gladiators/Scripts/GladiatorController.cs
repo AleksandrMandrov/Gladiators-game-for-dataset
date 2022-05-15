@@ -9,10 +9,24 @@ public class GladiatorController : MonoBehaviour {
     SpriteRenderer Srend;
     Animator anim;
 
+    public float attackRate = 1f;
+    float nextAttackTime = 0f;
+
+    public Transform RightPointAttack;
+    public Transform UpPointAttack;
+    public Transform LeftPointAttack;
+    public Transform DownPointAttack;
+    public float attackRadius = 0.5f;
+    public LayerMask enemyLayers;
+    public int attackDamage = 2;
+
+    public int maxHealth = 5;
+    int currentHealth;
+
 
     //change these variables if you wish to test different speeds and jump heights
     [SerializeField]
-    float moveForce = .1f;
+    float moveForce = 0.7f;
 
 
     //this variable is used for the screen wrapping
@@ -24,6 +38,8 @@ public class GladiatorController : MonoBehaviour {
 
     void Start()
     {
+        currentHealth = maxHealth;
+
         Srend = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
 
@@ -36,12 +52,62 @@ public class GladiatorController : MonoBehaviour {
         //controller and sprite manipulation
         #region
         //controller and sprite manipulation
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextAttackTime)
+        {
+            anim.SetBool("Attack", true);
+
+            if (anim.GetBool("WalkRight"))
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(RightPointAttack.position, attackRadius, enemyLayers);
+
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                }
+            }
+
+            if (anim.GetBool("WalkUp"))
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(UpPointAttack.position, attackRadius, enemyLayers);
+
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                }
+            }
+
+            if (anim.GetBool("WalkLeft"))
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(LeftPointAttack.position, attackRadius, enemyLayers);
+
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                }
+            }
+
+            if (anim.GetBool("WalkDown"))
+            {
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(DownPointAttack.position, attackRadius, enemyLayers);
+
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                }
+            }
+
+            nextAttackTime = Time.time + 1f / attackRate;
+        }
+        else
+        {
+            anim.SetBool("Attack", false);
+        }
+
+        if (Input.GetKey(KeyCode.W))
         {
             anim.SetBool("WalkUp", true);
 
             transform.Translate(Vector2.up * Time.fixedDeltaTime);
-         
             anim.SetBool("Idle", false);
         }else
         {
@@ -49,7 +115,7 @@ public class GladiatorController : MonoBehaviour {
 
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
             anim.SetBool("WalkRight", true);
             transform.Translate(Vector2.right * Time.fixedDeltaTime);
@@ -61,19 +127,22 @@ public class GladiatorController : MonoBehaviour {
 
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             anim.SetBool("WalkLeft", true);
             transform.Translate(Vector2.left * Time.fixedDeltaTime);
 
         }
-else        {
+        else 
+        {
             anim.SetBool("WalkLeft", false);
 
         }
 
 
-        if (Input.GetKey(KeyCode.DownArrow))
+
+
+        if (Input.GetKey(KeyCode.S))
         {
             anim.SetBool("WalkDown", true);
 
@@ -127,5 +196,30 @@ else        {
         }
         #endregion//camera wrap 
     }
+
+    void OnDrawGizmosSelected()
+    {
+        if (!RightPointAttack || !UpPointAttack || !LeftPointAttack || !DownPointAttack)
+        {
+            return;
+        }
+
+        Gizmos.DrawWireSphere(RightPointAttack.position, attackRadius);
+        Gizmos.DrawWireSphere(UpPointAttack.position, attackRadius);
+        Gizmos.DrawWireSphere(LeftPointAttack.position, attackRadius);
+        Gizmos.DrawWireSphere(DownPointAttack.position, attackRadius);
+    }
+
+    public void TakeDamage(int Damage)
+    {
+        currentHealth -= Damage;
+
+        if (currentHealth <= 0)
+        {
+            GetComponent<Collider2D>().enabled = false;
+            this.enabled = false;
+        }
+    }
+
 }
 

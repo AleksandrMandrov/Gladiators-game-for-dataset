@@ -6,21 +6,27 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedSceneGuid-0:
-      value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
-      flags: 0
-    RecentlyUsedSceneGuid-1:
       value: 5b07515e5c570d02085a0d7b13760d444316487b792b20617a2c4e30b2e1353d
       flags: 0
-    RecentlyUsedSceneGuid-2:
+    RecentlyUsedSceneGuid-1:
       value: 0708555f03515c0a555c0d7640710a44444e1b737b297e6674714b67b2b5623d
       flags: 0
-    RecentlyUsedSceneGuid-3:
+    RecentlyUsedSceneGuid-2:
       value: 06575751030550585b5c082115725c444f151e2c757f70602b714f61b1e6626e
+      flags: 0
+    RecentlyUsedSceneGuid-3:
+      value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
       flags: 0
     RecentlyUsedSceneGuid-4:
       value: 01020400530c5b0b5f0f0d7211275b44464f4e2c7c707f67742d4c32b6e4673a
       flags: 0
     RecentlyUsedSceneGuid-5:
+      value: 0109555255020f095d57097141770e44104f4172757a76647e2f456bb3b13560
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 5505505657530a0f5b5a0f7749725b441215407c797970652e2a1f60e4b16c69
+      flags: 0
+    RecentlyUsedSceneGuid-7:
       value: 55530657550d5f0e0e0c087213710b444f4e197f7b2b23687d7b1b32e0e3326f
       flags: 0
     vcPerforceServer:
