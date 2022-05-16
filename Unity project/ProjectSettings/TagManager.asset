@@ -8,23 +8,23 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Arena
   - Water
   - UI
+  - 
+  - 
+  - Floor
+  - Wall
+  - Interior
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - Player
   - Enemies
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - Layer 1
   - Layer 2
   - Layer 3
