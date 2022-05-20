@@ -1,10 +1,12 @@
 ﻿
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
 public class GladiatorController : MonoBehaviour {
 
+    public int numberGladiator = 0;
 
     SpriteRenderer Srend;
     Animator anim;
@@ -18,10 +20,12 @@ public class GladiatorController : MonoBehaviour {
     public Transform DownPointAttack;
     public float attackRadius = 0.5f;
     public LayerMask enemyLayers;
-    public int attackDamage = 2;
+    public float attackDamage = 2f;
 
-    public int maxHealth = 5;
-    int currentHealth;
+    public float maxHealth = 5;
+    float currentHealth;
+    public float fill;
+    public Image bar;
 
 
     //change these variables if you wish to test different speeds and jump heights
@@ -39,6 +43,7 @@ public class GladiatorController : MonoBehaviour {
     void Start()
     {
         currentHealth = maxHealth;
+        fill = 1f;
 
         Srend = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
@@ -49,6 +54,10 @@ public class GladiatorController : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
+
+        fill = (currentHealth / maxHealth);
+        bar.fillAmount = fill;
+
         //controller and sprite manipulation
         #region
         //controller and sprite manipulation
@@ -62,7 +71,11 @@ public class GladiatorController : MonoBehaviour {
 
                 foreach (Collider2D enemy in hitEnemies)
                 {
-                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    if (enemy.GetComponent<EnemyController>().enabled)
+                    {
+                        enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    }
+
                 }
             }
 
@@ -72,7 +85,10 @@ public class GladiatorController : MonoBehaviour {
 
                 foreach (Collider2D enemy in hitEnemies)
                 {
-                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    if (enemy.GetComponent<EnemyController>().enabled)
+                    {
+                        enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    }
                 }
             }
 
@@ -82,7 +98,10 @@ public class GladiatorController : MonoBehaviour {
 
                 foreach (Collider2D enemy in hitEnemies)
                 {
-                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    if (enemy.GetComponent<EnemyController>().enabled)
+                    {
+                        enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    }
                 }
             }
 
@@ -92,7 +111,10 @@ public class GladiatorController : MonoBehaviour {
 
                 foreach (Collider2D enemy in hitEnemies)
                 {
-                    enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    if (enemy.GetComponent<EnemyController>().enabled)
+                    {
+                        enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                    }
                 }
             }
 
@@ -210,16 +232,21 @@ public class GladiatorController : MonoBehaviour {
         Gizmos.DrawWireSphere(DownPointAttack.position, attackRadius);
     }
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage(float Damage)
     {
         currentHealth -= Damage;
 
         if (currentHealth <= 0)
         {
+            bar.fillAmount = 0;
             GetComponent<Collider2D>().enabled = false;
             this.enabled = false;
         }
     }
 
-}
+    public int getNumberGladiator()
+    {
+        return numberGladiator;
+    }
 
+}
