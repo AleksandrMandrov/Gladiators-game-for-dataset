@@ -3393,25 +3393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838309562495a0244b14dc08b90778c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlive: 1
-  CurrentHealth: 10
-  MaximumHealth: 10
-  HasAnimationWhenHealthChanges: 1
-  AnimationDuration: 0.1
-  OnCurrentHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  OnIsAliveChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  OnMaximumHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  HealthBarPrefabToSpawn: {fileID: 8459761256327841958, guid: 8d33425d7a2a5394ba6dc22e7de6306c,
-    type: 3}
 --- !u!1 &408439814
 GameObject:
   m_ObjectHideFlags: 0
@@ -6465,7 +6446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberGladiator: 1
-  isFriend: 0
+  isFriend: 1
   isAlive: 1
   speed: 2
   attackRate: 1
@@ -7444,7 +7425,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -7667,11 +7648,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4885610496867364, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.81
+      value: 24.43
       objectReference: {fileID: 0}
     - target: {fileID: 4885610496867364, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.37
+      value: -6.13
       objectReference: {fileID: 0}
     - target: {fileID: 4885610496867364, guid: 654bee44aa9fb2640ac43761ee8b0db8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16057,8 +16038,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberGladiator: 2
-  isFriend: 1
-  isAlive: 0
+  isFriend: 0
+  isAlive: 1
   speed: 2
   attackRate: 0.5
   attackRange: 1
